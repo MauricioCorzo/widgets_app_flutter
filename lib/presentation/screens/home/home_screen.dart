@@ -42,7 +42,9 @@ class _CustomListTile extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
 
     return Card(
-      elevation: 5,
+      margin: const EdgeInsets.all(8),
+      elevation: 4,
+      shadowColor: theme.primary,
       child: ListTile(
         leading: Icon(
           menuItem.icon,
@@ -54,7 +56,15 @@ class _CustomListTile extends StatelessWidget {
           Icons.arrow_forward_ios_rounded,
           color: theme.primary,
         ),
-        onTap: () {},
+        onTap: () {
+          // Navigator.of(context).push(
+          //   CupertinoPageRoute(
+          //     builder: (context) => const ButtonsScreen(),
+          //   ),
+          // );
+          Navigator.pushNamed(context, menuItem.link);
+        },
+        splashColor: const Color.fromARGB(255, 138, 193, 238),
       ),
     );
   }
