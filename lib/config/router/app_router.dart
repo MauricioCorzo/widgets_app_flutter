@@ -1,21 +1,22 @@
-import 'package:go_router/go_router.dart'
-    show CustomTransitionPage, GoRoute, GoRouter;
+import 'package:go_router/go_router.dart' show GoRoute, GoRouter;
 import 'package:widgets_app/presentation/screens/screens.dart';
-import 'package:flutter/material.dart';
 
 final appRouter = GoRouter(
   initialLocation: "/",
   routes: [
     GoRoute(
       path: '/',
+      name: HomeScreen.name,
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: '/buttons',
+      name: ButtonsScreen.name,
       builder: (context, state) => const ButtonsScreen(),
     ),
     GoRoute(
       path: '/cards',
+      name: CardsScreen.name,
       builder: (context, state) => const CardsScreen(),
     ),
   ],
