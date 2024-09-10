@@ -49,6 +49,9 @@ class _CustomListTile extends StatelessWidget {
       elevation: 4,
       shadowColor: theme.primary,
       child: ListTile(
+        // minTileHeight: 0,
+        // minVerticalPadding: 0,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         leading: Icon(
           menuItem.icon,
           color: theme.primary,
