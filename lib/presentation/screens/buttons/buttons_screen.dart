@@ -29,68 +29,72 @@ class _ButtonsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: Wrap(
-          spacing: 10,
-          alignment: WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            ElevatedButton(
-              style: buttonStyle,
-              onPressed: () {},
-              child: const Text("Elevated button"),
-            ),
-            ElevatedButton(
-              style: buttonStyle,
-              onPressed: null,
-              child: const Text("Disabled button"),
-            ),
-            ElevatedButton.icon(
-              style: buttonStyle,
-              onPressed: () {},
-              icon: const Icon(Icons.alarm_add_rounded),
-              label: const Text("Alarm button"),
-            ),
-            FilledButton(
-              style: buttonStyle,
-              onPressed: () {},
-              child: const Text("Filled"),
-            ),
-            FilledButton.icon(
-              style: buttonStyle,
-              onPressed: () {},
-              icon: const Icon(Icons.ac_unit_rounded),
-              label: const Text("Filled Icon"),
-            ),
-            OutlinedButton(
+    return Container(
+      decoration: BoxDecoration(color: Colors.black38),
+      child: SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Wrap(
+            spacing: 10,
+            alignment: WrapAlignment.spaceAround,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              ElevatedButton(
                 style: buttonStyle,
                 onPressed: () {},
-                child: const Text("Outline")),
-            OutlinedButton.icon(
+                child: const Text("Elevated button"),
+              ),
+              ElevatedButton(
+                style: buttonStyle,
+                onPressed: null,
+                child: const Text("Disabled button"),
+              ),
+              ElevatedButton.icon(
                 style: buttonStyle,
                 onPressed: () {},
-                icon: const Icon(Icons.terminal),
-                label: const Text("Outline icon")),
-            const CustomButton(),
-            TextButton(onPressed: () {}, child: const Text("Text button")),
-            TextButton.icon(
+                icon: const Icon(Icons.alarm_add_rounded),
+                label: const Text("Alarm button"),
+              ),
+              FilledButton(
                 style: buttonStyle,
                 onPressed: () {},
-                icon: const Icon(Icons.three_g_mobiledata_rounded),
-                label: const Text("Text icon")),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.map_outlined)),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.logout),
-              style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                      Theme.of(context).colorScheme.primary),
-                  iconColor: const WidgetStatePropertyAll(Colors.white)),
-            ),
-          ],
+                child: const Text("Filled"),
+              ),
+              FilledButton.icon(
+                style: buttonStyle,
+                onPressed: () {},
+                icon: const Icon(Icons.ac_unit_rounded),
+                label: const Text("Filled Icon"),
+              ),
+              OutlinedButton(
+                  style: buttonStyle,
+                  onPressed: () {},
+                  child: const Text("Outline")),
+              OutlinedButton.icon(
+                  style: buttonStyle,
+                  onPressed: () {},
+                  icon: const Icon(Icons.terminal),
+                  label: const Text("Outline icon")),
+              const CustomButton(),
+              TextButton(onPressed: () {}, child: const Text("Text button")),
+              TextButton.icon(
+                  style: buttonStyle,
+                  onPressed: () {},
+                  icon: const Icon(Icons.three_g_mobiledata_rounded),
+                  label: const Text("Text icon")),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.map_outlined)),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.logout),
+                style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(
+                        Theme.of(context).colorScheme.primary),
+                    iconColor: const WidgetStatePropertyAll(Colors.white)),
+              ),
+            ],
+          ),
         ),
       ),
     );
