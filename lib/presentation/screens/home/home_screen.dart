@@ -45,9 +45,10 @@ class _CustomListTile extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
 
     return Card(
-      margin: const EdgeInsets.all(8),
-      elevation: 4,
-      shadowColor: theme.primary,
+      color: Colors.white,
+      // margin: const EdgeInsets.all(8),
+      elevation: 0,
+      // shadowColor: theme.primary,
       child: ListTile(
         // minTileHeight: 0,
         // minVerticalPadding: 0,
