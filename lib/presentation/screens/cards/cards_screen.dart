@@ -38,6 +38,8 @@ class _CardsView extends StatelessWidget {
               label: card["label"], elevation: card["elevation"])),
           ...cardsData.map((card) => _CustomCardType3(
               label: card["label"], elevation: card["elevation"])),
+          // Tambien puede ir ListView wn vez de Align o SizedBox para que column tome todo el ancho
+          // del padre (screen) y pueda funcionar su Alignment
           ...cardsData.map((card) => Align(
                 alignment: Alignment.centerRight,
                 child: _CustomCardType4(
