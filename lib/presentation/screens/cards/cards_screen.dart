@@ -29,6 +29,8 @@ class _CardsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // aca puede ir ListView que es mas eficiente (cuando los hijos simepre necesiten ser del ancho de la pantalla)
+    // porque es mas performante
     return SingleChildScrollView(
       child: Column(
         children: [
