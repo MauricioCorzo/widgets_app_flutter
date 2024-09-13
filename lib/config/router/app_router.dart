@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart'
     show CustomTransitionPage, GoRoute, GoRouter;
+import 'package:widgets_app/presentation/screens/animated/animated_screen.dart';
 import 'package:widgets_app/presentation/screens/screens.dart'
     show ButtonsScreen, CardsScreen, HomeScreen, ProgressScreen, SnackBarScreen;
 
@@ -41,6 +42,15 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         //Custom page transition example
         return cupertinolikePageTransition(child: const SnackBarScreen());
+      },
+      // builder: (context, state) => const CardsScreen(),
+    ),
+    GoRoute(
+      path: '/animated',
+      name: AnimatedScreen.name,
+      pageBuilder: (context, state) {
+        //Custom page transition example
+        return cupertinolikePageTransition(child: const AnimatedScreen());
       },
       // builder: (context, state) => const CardsScreen(),
     ),
