@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart'
 import 'package:widgets_app/presentation/screens/animated/animated_screen.dart';
 import 'package:widgets_app/presentation/screens/screens.dart'
     show
+        AppTutorialScreen,
         ButtonsScreen,
         CardsScreen,
         HomeScreen,
@@ -66,6 +67,15 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         //Custom page transition example
         return cupertinolikePageTransition(child: const UiControlsScreen());
+      },
+      // builder: (context, state) => const CardsScreen(),
+    ),
+    GoRoute(
+      path: '/tutorial',
+      name: AppTutorialScreen.name,
+      pageBuilder: (context, state) {
+        //Custom page transition example
+        return cupertinolikePageTransition(child: const AppTutorialScreen());
       },
       // builder: (context, state) => const CardsScreen(),
     ),
