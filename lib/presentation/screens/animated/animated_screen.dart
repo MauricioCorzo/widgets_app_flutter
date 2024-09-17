@@ -19,14 +19,14 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
   void changeAnimatedContainerShape() {
     final random = Random();
     setState(() {
-      width = random.nextInt(300) + 50;
-      height = random.nextInt(300) + 50;
-      color = Color.fromRGBO(
+      this.width = random.nextInt(300) + 50;
+      this.height = random.nextInt(300) + 50;
+      this.color = Color.fromRGBO(
           random.nextInt(255), // red
           random.nextInt(255), // green
           random.nextInt(255), // blue
           1);
-      borderRadius = random.nextInt(100).toDouble();
+      this.borderRadius = random.nextInt(100).toDouble();
     });
   }
 

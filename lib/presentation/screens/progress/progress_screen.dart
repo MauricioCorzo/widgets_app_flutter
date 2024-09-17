@@ -28,11 +28,12 @@ class _ProgressView extends StatelessWidget {
           Text("Circular progress indicator", textAlign: TextAlign.center),
           SizedBox(height: 10),
           Align(
-              child: SizedBox(
-                  // width: 10,
-                  // height: 10,
-                  child: CircularProgressIndicator(
-                      strokeWidth: 2, backgroundColor: Colors.black12))),
+            child: SizedBox(
+                // width: 10,
+                // height: 10,
+                child: CircularProgressIndicator(
+                    strokeWidth: 2, backgroundColor: Colors.black12)),
+          ),
           SizedBox(height: 20),
           Text("Contolled circular and linear progress indicator",
               textAlign: TextAlign.center),
@@ -53,7 +54,7 @@ class _ContolledProgressIndicator extends StatelessWidget {
       initialData: 0,
       stream: Stream.periodic(
               const Duration(milliseconds: 300), (value) => (value * 2) / 100)
-          .takeWhile((value) => value < 100),
+          .takeWhile((value) => value <= 100),
       builder: (context, snapshot) {
         // usamos el el null assertion porque usamos el initialData en StreamBuilder
         final progressValue = snapshot.data!;

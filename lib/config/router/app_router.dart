@@ -3,7 +3,13 @@ import 'package:go_router/go_router.dart'
     show CustomTransitionPage, GoRoute, GoRouter;
 import 'package:widgets_app/presentation/screens/animated/animated_screen.dart';
 import 'package:widgets_app/presentation/screens/screens.dart'
-    show ButtonsScreen, CardsScreen, HomeScreen, ProgressScreen, SnackBarScreen;
+    show
+        ButtonsScreen,
+        CardsScreen,
+        HomeScreen,
+        ProgressScreen,
+        SnackBarScreen,
+        UiControlsScreen;
 
 final appRouter = GoRouter(
   initialLocation: "/",
@@ -51,6 +57,15 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         //Custom page transition example
         return cupertinolikePageTransition(child: const AnimatedScreen());
+      },
+      // builder: (context, state) => const CardsScreen(),
+    ),
+    GoRoute(
+      path: '/ui-controls',
+      name: UiControlsScreen.name,
+      pageBuilder: (context, state) {
+        //Custom page transition example
+        return cupertinolikePageTransition(child: const UiControlsScreen());
       },
       // builder: (context, state) => const CardsScreen(),
     ),
