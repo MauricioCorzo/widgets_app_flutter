@@ -32,41 +32,13 @@ final tutorialSlides = <TutorialSlideInfo>[
       imageUrl: 'assets/images/3.png'),
 ];
 
-class AppTutorialScreen extends StatefulWidget {
+class AppTutorialScreen extends StatelessWidget {
   static const name = 'app_tutorial_screen';
   const AppTutorialScreen({super.key});
 
   @override
-  State<AppTutorialScreen> createState() => _AppTutorialScreenState();
-}
-
-class _AppTutorialScreenState extends State<AppTutorialScreen> {
-  final PageController pageViewController = PageController();
-  bool endReached = false;
-  @override
-  void initState() {
-    super.initState();
-
-    pageViewController.addListener(() {
-      final page = this.pageViewController.page ?? 0;
-
-      if (!this.endReached && page >= (tutorialSlides.length - 1.3)) {
-        setState(() {
-          this.endReached = true;
-        });
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    pageViewController.dispose();
-
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final PageController pageViewController = PageController(initialPage: 0);
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: TextButton(
@@ -78,31 +50,23 @@ class _AppTutorialScreenState extends State<AppTutorialScreen> {
         children: [
           PageView(
             controller: pageViewController,
+            // onPageChanged: (value) {
+            //   print(value);
+            // },
             physics: const BouncingScrollPhysics(),
             children: [
               ...tutorialSlides.map((tutorialSlideData) =>
                   _Slide(tutorialSlideInfo: tutorialSlideData))
             ],
           ),
-          this.endReached
-              ? Positioned(
-                  bottom: 20,
-                  right: 20,
-                  child: FadeInRight(
-                    from: 15,
-                    duration: const Duration(milliseconds: 500),
-                    delay: const Duration(milliseconds: 300),
-                    child: FilledButton(
-                      onPressed: () => context.pop(),
-                      style: const ButtonStyle(
-                          minimumSize: WidgetStatePropertyAll(Size.zero),
-                          visualDensity: VisualDensity.compact,
-                          padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 12))),
-                      child: const Text("Start"),
-                    ),
-                  ))
-              : const SizedBox()
+          // Positioned(
+          //   bottom: 20,
+          //   left: 0,
+          //   right: 0,
+          //   // height: 50,
+          //   child:
+          // ),
+          EndTutorialButton(pageViewController: pageViewController)
         ],
       ),
     );
@@ -138,6 +102,115 @@ class _Slide extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class EndTutorialButton extends StatefulWidget {
+  final PageController pageViewController;
+
+  const EndTutorialButton({
+    super.key,
+    required this.pageViewController,
+  });
+
+  @override
+  State<EndTutorialButton> createState() => _EndTutorialButtonState();
+}
+
+class _EndTutorialButtonState extends State<EndTutorialButton> {
+  bool endReached = false;
+  int activePage = 0;
+  @override
+  void initState() {
+    super.initState();
+
+    widget.pageViewController.addListener(() {
+      final page = widget.pageViewController.page ?? 0;
+
+      if (!this.endReached && page >= (tutorialSlides.length - 1.3)) {
+        setState(() {
+          this.endReached = true;
+        });
+      }
+
+      if ((page.round() - page).abs() < 0.2 && activePage != page.round()) {
+        setState(() {
+          activePage = page.round();
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    widget.pageViewController.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Positioned(
+      bottom: 20,
+      left: 10,
+      right: 10,
+      child: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List<Widget>.generate(
+              tutorialSlides.length,
+              (index) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+                child: InkWell(
+                  // splashColor: colors.primary,
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () {
+                    widget.pageViewController.animateToPage(index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
+                  },
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: this.activePage == index
+                        ? colors.primary
+                        : Colors.black26,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 0,
+            bottom: 0,
+            right: 0,
+            child: Align(
+              alignment: AlignmentDirectional.center,
+              child: this.endReached
+                  ? FadeInRight(
+                      from: 15,
+                      duration: const Duration(milliseconds: 500),
+                      delay: const Duration(milliseconds: 300),
+                      child: FilledButton(
+                        onPressed: () => context.pop(),
+                        style: const ButtonStyle(
+                            minimumSize: WidgetStatePropertyAll(Size.zero),
+                            visualDensity: VisualDensity.compact,
+                            padding: WidgetStatePropertyAll(
+                                EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 16))),
+                        child: const Text("Start"),
+                      ),
+                    )
+                  : const SizedBox(),
+            ),
+          )
+        ],
       ),
     );
   }

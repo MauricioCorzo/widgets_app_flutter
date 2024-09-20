@@ -108,16 +108,19 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return Material(
+    return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      color: colors.primary,
-      child: InkWell(
-        onTap: () {},
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text(
-            "Custom button",
-            style: TextStyle(color: Colors.white),
+      child: Material(
+        borderRadius: BorderRadius.circular(20),
+        color: colors.primary,
+        child: InkWell(
+          onTap: () {},
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "Custom button",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ),
       ),
