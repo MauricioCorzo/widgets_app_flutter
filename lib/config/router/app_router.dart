@@ -11,7 +11,8 @@ import 'package:widgets_app/presentation/screens/screens.dart'
         HomeScreen,
         ProgressScreen,
         SnackBarScreen,
-        UiControlsScreen;
+        UiControlsScreen,
+        CounterScreen;
 
 final appRouter = GoRouter(
   initialLocation: "/",
@@ -20,6 +21,15 @@ final appRouter = GoRouter(
       path: '/',
       name: HomeScreen.name,
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: '/counter',
+      name: CounterScreen.name,
+      pageBuilder: (context, state) {
+        //Custom page transition example
+        return cupertinolikePageTransition(child: const CounterScreen());
+      },
+      // builder: (context, state) => const CardsScreen(),
     ),
     GoRoute(
       path: '/buttons',

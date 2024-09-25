@@ -3,3 +3,4 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     unnecessary_this: false
+    unnecessary_brace_in_string_interps: false
