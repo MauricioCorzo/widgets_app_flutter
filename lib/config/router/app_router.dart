@@ -8,11 +8,12 @@ import 'package:widgets_app/presentation/screens/screens.dart'
         AppTutorialScreen,
         ButtonsScreen,
         CardsScreen,
+        CounterScreen,
         HomeScreen,
         ProgressScreen,
         SnackBarScreen,
-        UiControlsScreen,
-        CounterScreen;
+        ThemeChangerScreen,
+        UiControlsScreen;
 
 final appRouter = GoRouter(
   initialLocation: "/",
@@ -98,6 +99,15 @@ final appRouter = GoRouter(
       //   return cupertinolikePageTransition(child: const AppTutorialScreen());
       // },
       builder: (context, state) => const InfiniteScrollScreen(),
+    ),
+    GoRoute(
+      path: '/theme-changer',
+      name: ThemeChangerScreen.name,
+      // pageBuilder: (context, state) {
+      //   //Custom page transition example
+      //   return cupertinolikePageTransition(child: const AppTutorialScreen());
+      // },
+      builder: (context, state) => const ThemeChangerScreen(),
     ),
   ],
 );
