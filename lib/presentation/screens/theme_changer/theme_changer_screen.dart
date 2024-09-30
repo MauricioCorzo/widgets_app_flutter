@@ -10,7 +10,8 @@ class ThemeChangerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final isDarkMode = ref.watch(isDarkModeProvider);
+    // final isDarkMode = ref.watch(isDarkModeProvider);
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -18,7 +19,8 @@ class ThemeChangerScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-              ref.read(isDarkModeProvider.notifier).update((state) => !state);
+              // ref.read(isDarkModeProvider.notifier).update((state) => !state);
+              ref.read(themeNotifierProvider.notifier).toggleDarkMode();
             },
             icon: Icon(isDarkMode
                 ? Icons.dark_mode_outlined
@@ -37,7 +39,9 @@ class _ThemeChangerView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final List<Color> colors = ref.watch(colorListProvider);
-    final int selectedThemeColorIndex = ref.watch(selectedThemeColorProvider);
+    // final int selectedThemeColorIndex = ref.watch(selectedThemeColorProvider);
+    final int selectedThemeColorIndex =
+        ref.watch(themeNotifierProvider).selectedColor;
 
     return ListView.builder(
       itemCount: colors.length,
@@ -45,7 +49,7 @@ class _ThemeChangerView extends ConsumerWidget {
         final Color color = colorList[index];
         return RadioListTile(
             title: Text(
-              "Este Color",
+              "This Color",
               style: TextStyle(color: color),
             ),
             subtitle: Text("${color.value}"),
@@ -53,7 +57,8 @@ class _ThemeChangerView extends ConsumerWidget {
             value: index,
             groupValue: selectedThemeColorIndex,
             onChanged: (value) {
-              ref.read(selectedThemeColorProvider.notifier).state = value!;
+              // ref.read(selectedThemeColorProvider.notifier).state = value!;
+              ref.read(themeNotifierProvider.notifier).changeColorIndex(value!);
             });
       },
     );
