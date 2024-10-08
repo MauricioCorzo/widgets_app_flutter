@@ -41,7 +41,7 @@ class AppTutorialScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageController pageViewController = PageController(initialPage: 0);
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       floatingActionButton: TextButton(
         onPressed: () => Navigator.of(context).pop(),
         child: const Text("Exit"),
