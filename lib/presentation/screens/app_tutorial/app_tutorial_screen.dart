@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TutorialSlideInfo {
   final String title;
@@ -159,32 +160,53 @@ class _EndTutorialButtonState extends State<EndTutorialButton> {
       left: 10,
       right: 10,
       child: Stack(
+        alignment: Alignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List<Widget>.generate(
-              tutorialSlides.length,
-              (index) => Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-                child: InkWell(
-                  // splashColor: colors.primary,
-                  borderRadius: BorderRadius.circular(8),
-                  onTap: () {
-                    widget.pageViewController.animateToPage(index,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  },
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: this.activePage == index
-                        ? colors.primary
-                        : Colors.black26,
-                  ),
-                ),
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+            child: SmoothPageIndicator(
+              controller: widget.pageViewController,
+              count: tutorialSlides.length,
+              effect: WormEffect(
+                  spacing: 16,
+                  activeDotColor: colors.primary,
+                  dotWidth: 14,
+                  dotHeight: 14),
+              onDotClicked: (index) {
+                widget.pageViewController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn,
+                );
+              },
             ),
           ),
+
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: List<Widget>.generate(
+          //     tutorialSlides.length,
+          //     (index) => Padding(
+          //       padding:
+          //           const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+          //       child: InkWell(
+          //         // splashColor: colors.primary,
+          //         borderRadius: BorderRadius.circular(8),
+          //         onTap: () {
+          //           widget.pageViewController.animateToPage(index,
+          //               duration: const Duration(milliseconds: 300),
+          //               curve: Curves.easeIn);
+          //         },
+          //         child: CircleAvatar(
+          //           radius: 7,
+          //           backgroundColor: this.activePage == index
+          //               ? colors.primary
+          //               : Colors.black26,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Positioned(
             top: 0,
             bottom: 0,
